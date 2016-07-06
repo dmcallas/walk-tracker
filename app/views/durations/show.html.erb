@@ -1,0 +1,19 @@
+<p>
+  <strong>User:</strong>
+  <%= @duration.user %>
+</p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @duration.day %>
+</p>
+
+<p>
+  <strong>Minutes:</strong>
+  <%= @duration.minutes %>
+</p>
+
+<p>
+  <%= link_to 'Edit', edit_duration_path(@duration) %> |
+  <%= link_to 'Back', durations_path %>
+</p>

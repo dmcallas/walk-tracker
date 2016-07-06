@@ -1,0 +1,70 @@
+<h1><%= @user.first %> <%= @user.last %></h1>
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last %>
+</p>
+
+<p>
+  <%= link_to 'Edit User Info', edit_user_path(@user) %>
+</p>
+
+<h2>Add a time:</h2>
+<%= form_for([@user, @user.durations.build]) do |f| %>
+<table>
+  <tr>
+    <th><%= f.label :day %></th>
+    <td><%= f.date_field :day, value: Time.now.strftime('%Y-%m-%d') %></td>
+
+  </tr>
+  <tr>
+    <th><%= f.label :minutes %></th>
+    <td><%= f.number_field :minutes %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%= f.submit 'Save' %>
+    </td>
+  </tr>
+</table>
+<% end %>
+
+
+<h2>Walk Times</h2>
+<table>
+  <tr>
+    <th>Day</th>
+    <th>Minutes</th>
+  </tr>
+  <% @user.durations.reject { |duration| duration.day.nil? }.sort_by {|duration| duration.day}.each do |duration| %>
+
+    <tr>
+      <td>
+        <%= duration.day %>
+      </td>
+      
+      <td>
+        &nbsp;<%= duration.minutes %>
+      </td>
+      <td>
+	<%= link_to 'Delete', [duration.user, duration],
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= link_to 'View All Users', users_path %>
+</p>

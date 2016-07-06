@@ -2,6 +2,7 @@
 capybara-*.html
 .rspec
 /log
+!/log/.keep
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -40,3 +41,6 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+
+

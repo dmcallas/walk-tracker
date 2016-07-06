@@ -1,0 +1,30 @@
+<h1>Listing articles</h1>
+ 
+<table>
+  <tr>
+    <th></th>
+    <th>User</th>
+    <th>Day</th>
+    <th>Minutes</th>
+  </tr>
+ 
+  <% @durations.each do |duration| %>
+    <tr>
+      <td><%= link_to duration.id, duration_path(duration) %></td>
+      <td><%= duration.user %></td>
+      <td><%= duration.day %></td>
+      <td><%= duration.minutes %></td>
+      <td><%= link_to 'Show', duration_path(duration) %></td>
+      <td><%= link_to 'Edit', edit_duration_path(duration) %></td>
+      <td><%= link_to 'Delete', duration_path(duration),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+
+</table>
+
+<br/>
+
+<%= link_to 'New Entry', new_duration_path %>
