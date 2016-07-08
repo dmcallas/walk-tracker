@@ -58,12 +58,9 @@
         &nbsp;<%= duration.minutes %>
       </td>
       <td>
-	<%= link_to [duration.user, duration],
+	<%= link_to 'Delete', [duration.user, duration],
             method: :delete,
-            data: { confirm: 'Are you sure?' } do %>
-	<i class="glyphicon glyphicon-remove"></i>
-	<% end %>
-
+            data: { confirm: 'Are you sure?' } %>
       </td>
     </tr>
   <% end %>
