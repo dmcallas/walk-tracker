@@ -1,11 +1,12 @@
 <h1>Walking Tracker</h1>
 
-<table>
+<table class="table-striped table-condensed">
   <tr>
   <th></th>
   <% @grid.build.column_headers.each do |head| %>
   <th><%= head.strftime(' %m/%d ') %></th>
   <% end %>
+  <th>Total</th>
   </tr>
   <% @grid.build.rows.each do |row| %>
   <tr>
@@ -15,14 +16,16 @@
     <% if item %>
     <td><%= item.minutes %></td>
     <% else %>
-        <td></td>
+    <td></td>
     <% end %>
+    
     <% end %>
-    </tr>
+    <th><%= row.total %></th>
+  </tr>
   <% end %>
 </table>
 
 
 <br/>
 
-<%= link_to 'Add a New User', new_user_path %>
+<%= link_to 'Add a New User', new_user_path, class: 'btn btn-primary' %>

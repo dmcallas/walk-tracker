@@ -13,25 +13,27 @@
       </ul>
     </div>
   <% end %>
- 
-  <p>
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </p>
- 
-  <p>
-    <%= f.label :first %><br>
-    <%= f.text_field :first %>
-  </p>
 
-  <p>
-    <%= f.label :last %><br>
-    <%= f.text_field :last %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
+  <table class="table-condensed">
+  <tr>
+    <th><%= f.label :username %></th>
+    <td><%= f.text_field :username %></td>
+  </tr>
  
+  <tr>
+    <th><%= f.label :first %></th>
+    <td><%= f.text_field :first %></td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :last %></th>
+    <td><%= f.text_field :last %></td>
+  </tr>
+
+  <tr>
+    <th></th>
+    <td><%= f.submit class: 'btn btn-primary' %></td>
+  </tr>
+  </table>
 <% end %>
 

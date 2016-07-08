@@ -6,6 +6,7 @@ class UsersController < ApplicationController
       g.source_data  = durations
       g.column_name  = :day
       g.row_name     = :user_id
+      g.value_name   = :minutes
     end
   end
 
