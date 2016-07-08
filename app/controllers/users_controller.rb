@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    durations = Duration.all
+    @grid = PivotTable::Grid.new do |g|
+      g.source_data  = durations
+      g.column_name  = :day
+      g.row_name     = :user_id
+    end
   end
 
   def show

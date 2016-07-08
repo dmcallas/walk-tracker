@@ -1,30 +1,28 @@
-<h1>Users</h1>
- 
+<h1>Walking Tracker</h1>
+
 <table>
   <tr>
-    <th></th>
-    <th>Username</th>
-    <th>First</th>
-    <th>Last</th>
+  <th></th>
+  <% @grid.build.column_headers.each do |head| %>
+  <th><%= head.strftime(' %m/%d ') %></th>
+  <% end %>
   </tr>
- 
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to user.id, user_path(user) %></td>
-      <td><%= user.username %></td>
-      <td><%= user.first %></td>
-      <td><%= user.last %></td>
-      <td><%= link_to 'View', user_path(user) %></td>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      <!-- td><%= link_to 'Delete', user_path(user),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td --!>
+  <% @grid.build.rows.each do |row| %>
+  <tr>
+    <% user = User.find(row.header) %>
+    <th><%= link_to user.first+' '+user.last, user_path(user) %></th>
+    <% row.data.each do |item| %>
+    <% if item %>
+    <td><%= item.minutes %></td>
+    <% else %>
+        <td></td>
+    <% end %>
+    <% end %>
     </tr>
   <% end %>
-
-
 </table>
+
 
 <br/>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'Add a New User', new_user_path %>
