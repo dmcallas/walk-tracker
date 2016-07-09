@@ -8,6 +8,25 @@ class UsersController < ApplicationController
       g.row_name     = :user_id
       g.value_name   = :minutes
     end
+
+    respond_to do |format|
+      format.html
+      format.csv {
+        # Build and return CSV file using the pivot table
+        out_data = CSV.generate do |csv|
+          csv << @grid.build.column_headers.unshift('')
+          @grid.build.rows.each do |row|
+            user = User.find(row.header)
+            user_name = user.first+' '+user.last
+            row_data = row.data.map{|n| n.nil? ? '' : n.minutes}
+            row_data[0] = user_name
+            csv << row_data
+          end
+        end
+
+        send_data(out_data, :filename => 'walk_times.csv')
+      }
+    end
   end
 
   def show
