@@ -66,6 +66,8 @@
   <% end %>
 </table>
 
+<%= line_chart @user.durations.reject{|d| d.day.nil?}.sort_by{|d| d.day}.map{|d| [d.day,d.minutes] }, xtitle: "Day", ytitle: "Minutes" %>
+
 <p>
   <%= link_to 'View All Users', users_path %>
 </p>

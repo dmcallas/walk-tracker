@@ -10,6 +10,7 @@ gem 'pg'
 # Pivot table for displaying summaries
 gem 'pivot_table'
 
+gem 'chartkick'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
