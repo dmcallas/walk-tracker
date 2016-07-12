@@ -1,32 +1,56 @@
 <h1>Walking Tracker</h1>
 
-<table class="table-striped table-condensed">
-  <tr>
-  <th></th>
-  <% @grid.build.column_headers.each do |head| %>
-  <th><%= head.strftime('%a') %><br/><%= head.strftime('%-m/%-d') %></th>
-  <% end %>
-  <th>Total</th>
-  </tr>
-  <% @grid.build.rows.each do |row| %>
-  <tr>
-    <% user = User.find(row.header) %>
-    <th><%= link_to user.first+' '+user.last, user_path(user) %></th>
-    <% row.data.each do |item| %>
-    <% if item %>
-    <td><%= item.minutes %></td>
-    <% else %>
-    <td></td>
-    <% end %>
-    
-    <% end %>
-    <th><%= row.total %></th>
-  </tr>
-  <% end %>
-</table>
+<div class="container-fluid">
 
-<br/>
+  <div class="row">
+    <div class="col-sm-12">
 
-<%= link_to 'Download table as CSV', users_path(format: "csv"), class: 'btn btn-primary' %>
+      <table class="table-striped table-condensed">
+	<tr>
+	  <th></th>
+	  <% @grid.build.column_headers.each do |head| %>
+	  <th>
+	    <%= head.strftime('%a') %><br/>
+	    <%= head.strftime('%-m/%-d') %>
+	  </th>
+	  <% end %>
+	  <th>Total</th>
+	</tr>
+	<% @grid.build.rows.each do |row| %>
+	<tr>
+	  <% user = User.find(row.header) %>
+	  <th><%= link_to user.first+' '+user.last, user_path(user) %></th>
+	  <% row.data.each do |item| %>
+	  <% if item %>
+	  <td><%= item.minutes %></td>
+	  <% else %>
+	  <td></td>
+	  <% end %>
 
-<%= link_to 'Add a New User', new_user_path, class: 'btn btn-primary' %>
+	  <% end %>
+	  <th><%= row.total %></th>
+	</tr>
+	<% end %>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to 'Download table as CSV', users_path(format: "csv"), class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= column_chart @users.map{|user| {name: user.username, data: user.durations.reject{|d| d.day.nil?}.sort_by{|d| d.day}.map{|d| [d.day,d.minutes] }}} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to 'Add a New User', new_user_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+</div>
