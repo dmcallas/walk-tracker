@@ -1,7 +1,22 @@
-<h1><%= @user.first %> <%= @user.last %> (<%= @user.username%>)
-<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-sm btn-primary' %>
-</h1>
 <div class="container-fluid">
+  
+  <div class="help-block"></div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <%= link_to users_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-arrow-left"></span> Return to All Users
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>
+	<%= @user.first %> <%= @user.last %> (<%= @user.username%>)
+<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-sm btn-primary' %>
+      </h1>
+    </div>
+  </div>
   
   <div class="row">
     <div class="col-sm-12">
@@ -12,7 +27,7 @@
   <div class="row">
     <div class="col-sm-1"></div>
 
-    <div class="col-sm-10">
+    <div class="col-sm-5">
       <h2>Walk Times</h2>
       <%= form_for([@user, @user.durations.build]) do |f| %>
 
@@ -56,11 +71,28 @@
       <% end %>
     </div>
     <div class="col-sm-1"></div>
+    <div class="col-sm-5">
+      <h2>Add Multiple Times</h2>
+      <p>Select the <i>first</i> day you will be entering time for in the date field. Then enter times, separating them with a comma. If you skipped a day, enter a zero for that day.</p>
+      <%= form_for([@user, @user.bulks.build]) do |f| %>
+      <%= f.label 'First Day In List' %>
+      <%= f.date_field :start_date, value: '2016-07-01', class: 'input-sm' %>
+      <br/>
+      <%= f.label :values %>
+      <%= f.text_field :values, min: 0, max: 999, class: 'input-sm' %>
+      <br/>
+      <%= f.submit 'Add Times', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
+
+  <div class="help-block"></div>
 
   <div class="row">
     <div class="col-sm-12">
-      <%= link_to 'Return to All Users', users_path, class: 'btn btn-primary' %>
+      <%= link_to users_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-arrow-left"></span> Return to All Users
+      <% end %>
     </div>
   </div>
 

@@ -1,0 +1,38 @@
+<%= form_for @bulk do |f| %>
+
+  <% if @bulk.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@bulk.errors.count, "error") %> prevented creation.
+      </h2>
+      <ul>
+        <% @bulk.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table-condensed">
+  <tr>
+    <th><%= f.label :user %></th>
+    <td><%= f.number_field :user %></td>
+  </tr>
+ 
+  <tr>
+    <th><%= f.label :start_date %></th>
+    <td><%= f.date_field :start_date %></td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :values %></th>
+    <td><%= f.text_field :values %></td>
+  </tr>
+
+  <tr>
+    <th></th>
+    <td><%= f.submit class: 'btn btn-primary' %></td>
+  </tr>
+  </table>
+<% end %>
+

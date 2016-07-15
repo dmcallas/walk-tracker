@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706021353) do
+ActiveRecord::Schema.define(version: 20160715045951) do
+
+  create_table "bulks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.date     "start_date"
+    t.text     "values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bulks", ["user_id"], name: "index_bulks_on_user_id"
 
   create_table "durations", force: :cascade do |t|
     t.integer  "user_id"

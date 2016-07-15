@@ -14,9 +14,10 @@ class DurationsController < ApplicationController
 
   def update
     @duration = Duration.find(params[:id])
- 
+    
     if @duration.update(duration_params)
-      redirect_to @duration
+      @user = @duration.user
+      redirect_to @user
     else
       render 'edit'
     end
