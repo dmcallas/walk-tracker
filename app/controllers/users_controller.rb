@@ -18,7 +18,7 @@ class UsersController < ApplicationController
           csv << @grid.build.column_headers.unshift('')
           @grid.build.rows.each do |row|
             user = User.find(row.header)
-            user_name = user.first+' '+user.last
+            user_name = user.username
             row_data = row.data.map{|n| n.nil? ? '' : n.minutes}
             row_data[0] = user_name
             csv << row_data

@@ -21,7 +21,7 @@
 	<% @grid.build.rows.each do |row| %>
 	<tr>
 	  <% user = User.find(row.header) %>
-	  <th><%= link_to user.first+' '+user.last, user_path(user) %></th>
+	  <th><%= link_to user.username, user_path(user) %></th>
 	  <% row.data.each do |item| %>
 	  <% if item %>
 	  <td><%= item.minutes %></td>
