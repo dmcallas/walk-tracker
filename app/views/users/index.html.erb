@@ -18,7 +18,7 @@
 	  <% end %>
 	  <th>Total</th>
 	</tr>
-	<% @grid.build.rows.each do |row| %>
+	<% @grid.build.rows.sort_by{|row| row.total}.reverse.each do |row| %>
 	<tr>
 	  <% user = User.find(row.header) %>
 	  <th><%= link_to user.username, user_path(user) %></th>
