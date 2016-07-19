@@ -3,4 +3,7 @@
 
 <%= render 'form' %>
 
-<p><%= link_to 'Back', durations_path %></p>
+<p><%= link_to user_path(@duration.user), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-arrow-left"></span> Return to User
+      <% end %>
+</p>
